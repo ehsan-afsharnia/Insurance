@@ -57,10 +57,41 @@ fixNumbers = function (str)
 
     const now = new Date().toLocaleDateString('fa-IR')
     let nowYear = now.slice(0,4)
-        nowYear =fixNumbers(nowYear)
+        max =fixNumbers(nowYear)
 
-        console.log(nowYear);
+        console.log(max);
 
+
+
+
+    // min year
+
+
+    let min = max - 20
+
+    // access to the select tag
+
+      const selectYear = document.querySelector('#year')
+
+
+
+    // create for loop for making option tag
+
+
+    for (let i = max; i >= min; i--){
+      
+     // create option
+
+      const option = document.createElement('option')
+      option.value = i
+      option.innerText = i
+
+
+      // append option to the selectYear
+
+      selectYear.appendChild(option)
+
+    }
 
 }
 
