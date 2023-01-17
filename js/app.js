@@ -1,8 +1,8 @@
 // variebles
 
+const form = document.querySelector('#request-quote')
 
-
-
+const html = new HTMLUI()
 
 
 
@@ -11,16 +11,57 @@
 
 // eventlistenters
 
+
+eventlisteners()
+
+function eventlisteners() {
+  
+
+// make option tag for select
+
 document.addEventListener('DOMContentLoaded', function () {
     
+
+
     // display the <option>
 
-    const html = new HTMLUI()
+    
     html.displayYears()
 })
 
 
 
+
+// submit form when click
+
+
+
+form.addEventListener('submit', function(e){
+  
+  e.preventDefault()
+
+  // read value from the form
+  const make = document.getElementById('make').value
+
+  const year = document.getElementById('year').value
+
+  const level = document.querySelector('input[name="level"]:checked').value
+  
+
+  // check the value of fields are correct
+
+  if (make == '' || year == ''  || level == '') {
+    
+    html.displayError('لطفا همه مقادیر به درستی وارد شود')
+  } else {
+    console.log('alright');
+  }
+
+
+
+})
+
+}
 
 
 
@@ -96,6 +137,28 @@ fixNumbers = function (str)
 }
 
 
+// display errors on the form
+
+
+HTMLUI.prototype.displayError = function(err){
+
+  const div = document.createElement('div')
+  div.classList = 'error'
+  div.innerText = err
+
+
+  // insert div to the form
+
+
+  form.insertBefore(div, document.querySelector('.form-group'))
+
+
+  // remove erorr after 3seconds
+  setTimeout(() => {
+    document.querySelector('.error').remove()
+  }, 3000);
+  
+}
 
 
 
